@@ -63,8 +63,13 @@ const Graph: React.FunctionComponent = (props: any) => {
         const parameterString:any = []
         Object.keys(parameters).forEach((params) => {
             if(parameters[params]) {
+              if(params === 'startDate' || params === 'endDate') {
+                const date = new Date (parameters[params])  
+                parameterString.push(`${params}=${date.toISOString()}`)
+              } else{
                 parameterString.push(`${params}=${parameters[params]}`)
-            }
+              }
+            } 
         })
         const newUrl = `${url}${separator}${parameterString.join('&')}`;
         return newUrl
