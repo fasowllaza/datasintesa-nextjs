@@ -2,8 +2,9 @@
 
 import React, { useState } from 'react';
 
-function FileUpload() {
+export default function FileUpload() {
   const [selectedFile, setSelectedFile] = useState(null);
+  const baseUrl = 'http://localhost:3001'
 
   const handleFileChange = (event:any) => {
     const file = event.target.files[0];
@@ -13,16 +14,15 @@ function FileUpload() {
   const handleFileUpload = () => {
     if (selectedFile) {
       const formData = new FormData();
-      formData.append('file', selectedFile);
+      formData.append('files', selectedFile);
   
-      fetch('/upload', {
+      fetch(`http://localhost:3001/raw-data`, {
         method: 'POST',
         body: formData,
       })
-        .then((response) => response.json())
+        .then((response) => console.log(response))
         .then((data) => {
-          console.log('File upload response:', data);
-          // Handle the server's response as needed
+          console.log('file uploaded')
         })
         .catch((error) => {
           console.error('File upload error:', error);
@@ -39,5 +39,3 @@ function FileUpload() {
     </div>
   );
 }
-
-export default FileUpload;

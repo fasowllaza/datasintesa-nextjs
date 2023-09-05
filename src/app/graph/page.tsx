@@ -29,7 +29,7 @@ const Graph: React.FunctionComponent = (props: any) => {
 
     const trasnformData = async (datas: RawData []) => {
         let sortedData = datas
-        sortedData.sort((a, b) => a.resultTime - b.resultTime)
+        sortedData.sort((a:any, b:any) => a.resultTime - b.resultTime)
         let transformedData: GraphData [] = []
         let x = []
         let y = []
