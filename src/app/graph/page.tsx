@@ -27,6 +27,10 @@ const Graph: React.FunctionComponent = (props: any) => {
         loadingGraph: false
     })
 
+    useEffect( () =>{
+      fetchData()
+    },[])
+
     const trasnformData = async (datas: RawData []) => {
         let sortedData = datas
         sortedData.sort((a:any, b:any) => a.resultTime - b.resultTime)
@@ -79,9 +83,6 @@ const Graph: React.FunctionComponent = (props: any) => {
         })
     }
     
-    useEffect( () =>{
-        fetchData()
-    },[])
 
     return <div className='center-container'>
         <h1>Filter Data</h1>

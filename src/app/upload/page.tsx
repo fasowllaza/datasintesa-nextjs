@@ -1,10 +1,12 @@
 'use client'
-import './upload.css'
 import React, { useState } from 'react';
+
+import './upload.css'
+
+const baseUrl = 'http://localhost:3001'
 
 export default function FileUpload() {
   const [selectedFile, setSelectedFile] = useState(null);
-  const baseUrl = 'http://localhost:3001'
   const [message, setMessage] = useState('')
 
   const handleFileChange = (event:any) => {
