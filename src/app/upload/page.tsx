@@ -1,10 +1,11 @@
 'use client'
-
+import './upload.css'
 import React, { useState } from 'react';
 
 export default function FileUpload() {
   const [selectedFile, setSelectedFile] = useState(null);
   const baseUrl = 'http://localhost:3001'
+  const [message, setMessage] = useState('')
 
   const handleFileChange = (event:any) => {
     const file = event.target.files[0];
@@ -20,22 +21,24 @@ export default function FileUpload() {
         method: 'POST',
         body: formData,
       })
-        .then((response) => console.log(response))
-        .then((data) => {
-          console.log('file uploaded')
+        .then((response) => {
+          setMessage('Upload Success')
         })
         .catch((error) => {
-          console.error('File upload error:', error);
+          setMessage('Upload Failed')
         });
     }
   };
   
 
   return (
-    <div>
-      <h1>File Upload</h1>
-      <input type="file" onChange={handleFileChange} />
-      <button onClick={handleFileUpload}>Upload</button>
+    <div className='container'>
+      <div>
+        <h1>File Upload</h1>
+        <input type="file" onChange={handleFileChange} />
+        <button onClick={handleFileUpload}>Upload</button>
+        <h1>{message ? message: null}</h1>
+      </div>
     </div>
   );
 }
