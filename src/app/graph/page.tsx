@@ -2,6 +2,7 @@
 import moment from 'moment';
 import React, { useState, useEffect } from 'react';
 import Plot from 'react-plotly.js';
+import './graph.css'
 
 interface RawData {
     availability: number,
@@ -39,8 +40,8 @@ const Graph: React.FunctionComponent = (props: any) => {
         let x = []
         let y = []
         for await (const item of sortedData) {
-            x.push(item.availability)   
-            y.push(moment(item.resultTime).format('DD-MM-YYYY'))
+            y.push(item.availability)   
+            x.push(moment(item.resultTime).format('DD-MM-YYYY h:mm'))
         }
         setData({
             x,
@@ -86,7 +87,7 @@ const Graph: React.FunctionComponent = (props: any) => {
     
 
     return <div className='center-container'>
-        <h1>Filter Data</h1>
+        <h1>Filter</h1>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="enodebId">eNodeB ID:</label>
