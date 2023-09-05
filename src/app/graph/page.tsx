@@ -13,8 +13,9 @@ interface GraphData {
     y: string
 }
 
+const baseUrl = 'http://localhost:3001'
+
 const Graph: React.FunctionComponent = (props: any) => {
-    const baseUrl = 'http://localhost:3001'
     const [data, setData] = useState({x: [], y: []})
     const [filter, setFilter] = useState({
         enodebId: '',
@@ -75,7 +76,7 @@ const Graph: React.FunctionComponent = (props: any) => {
 
     const fetchData = () => {
         setLoading({...loading, loadingData: true})
-        fetch(addParameter('http://localhost:3001/raw-data', filter) )
+        fetch(addParameter(`${baseUrl}/raw-data`, filter) )
         .then((res) => res.json())
         .then((result) => {
             trasnformData(result)

@@ -19,7 +19,7 @@ export default function FileUpload() {
       const formData = new FormData();
       formData.append('files', selectedFile);
   
-      fetch(`http://localhost:3001/raw-data`, {
+      fetch(`${baseUrl}/raw-data`, {
         method: 'POST',
         body: formData,
       })
